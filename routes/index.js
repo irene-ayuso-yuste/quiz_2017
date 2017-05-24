@@ -34,4 +34,8 @@ router.get('/help',function(req,res,next){
     res.render('help');
 });
 
+//Boton de jugar
+router.get('/quizzes/randomplay', quizController.random);
+router.get('/quizzes/randomcheck/:quizId(\\d+)',quizController.random2);
+
 module.exports = router;

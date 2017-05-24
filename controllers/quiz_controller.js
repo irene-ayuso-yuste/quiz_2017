@@ -187,3 +187,55 @@ exports.check = function (req, res, next) {
         answer: answer
     });
 };
+
+exports.random = function(req, res, next){
+    arrayQuiz = req.session.arrayQuiz || [];
+    
+    if (arrayQuiz.length == 0){
+        ansQuiz = [0];
+    } else {
+        ansQuiz = arrayQuiz;
+    }
+
+    models.Quiz.findAll({
+        where: {
+        id: {
+        $notIn: ansQuiz
+	}}
+	}).then(function(quizzes) {
+	
+	if (quizzes.length > 0) {
+	quiz = quizzes[Math.floor(Math.random()*quizzes.length)].dataValues;
+
+		res.render('quizzes/random_play',{
+			score:arrayQuiz.length,
+			quiz: quiz
+		});
+	} else {
+		req.session.array = [];
+		res.render('quizzes/random_nomore',{
+			score: arrayQuiz.length
+		})
+	}
+    });
+};
+
+//Random2
+
+exports.random2 = function(req,res,next) {
+	req.session.arrayQuiz = req.session.arrayQuiz.length || [];
+	result = req.query.answer == req.quiz.answer;
+
+	if (result) {
+		req.session.arrayQuiz[req.session.arrayQuiz.length] = req.qiuz.id;
+	} else {
+	req.session.arrayQuiz = [];
+	}
+	score = req.session.arrayQuiz.length;
+	res.render('quizzes/random_result',{
+		score: score,
+		answer: req.query.answer,
+		result: result
+	})
+};
+
