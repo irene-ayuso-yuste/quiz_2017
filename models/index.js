@@ -26,5 +26,17 @@ var sequelize = new Sequelize(url, {storage: storage});
 // Importar la definicion de la tabla Quiz de quiz.js
 var Quiz = sequelize.import(path.join(__dirname, 'quiz'));
 
+sequelize.sync().then(function() {
+	Quiz.count().then(function(count) {
+		if (count === 0) {
+			Quiz.create({
+				question: 'Mejor club de Teleco',
+				answer: 'Delta'
+			}).then(function() {
+				console.log('Quizzes inicializados');
+			});
+		}
+	})
+});
 
 exports.Quiz = Quiz; // exportar definición de tabla Quiz

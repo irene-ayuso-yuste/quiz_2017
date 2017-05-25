@@ -17,7 +17,7 @@
 9 verbose stack     at maybeClose (child_process.js:1015:16)
 9 verbose stack     at Process.ChildProcess._handle.onexit (child_process.js:1087:5)
 10 verbose pkgid quiz-2017@0.0.0
-11 verbose cwd /home/oterosaxo/quiz_2017
+11 verbose cwd /home/oterosaxo/quiz_2017/models
 12 error Linux 3.13.0-40-generic
 13 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "run-script" "migrate_local"
 14 error node v0.12.4

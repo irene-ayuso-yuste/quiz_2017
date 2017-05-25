@@ -188,14 +188,13 @@ exports.check = function (req, res, next) {
     });
 };
 
-//Random
 exports.random = function(req, res, next){
-    array = req.session.array || [];
+    arrayQuiz = req.session.arrayQuiz || [];
     
-    if (array.length == 0){
+    if (arrayQuiz.length == 0){
         ansQuiz = [0];
     } else {
-        ansQuiz = array;
+        ansQuiz = arrayQuiz;
     }
 
     models.Quiz.findAll({
@@ -209,13 +208,13 @@ exports.random = function(req, res, next){
 	quiz = quizzes[Math.floor(Math.random()*quizzes.length)].dataValues;
 
 		res.render('quizzes/random_play',{
-			score:array.length,
+			score:arrayQuiz.length,
 			quiz: quiz
 		});
 	} else {
 		req.session.array = [];
 		res.render('quizzes/random_nomore',{
-			score: array.length
+			score: arrayQuiz.length
 		})
 	}
     });
@@ -224,15 +223,15 @@ exports.random = function(req, res, next){
 //Random2
 
 exports.random2 = function(req,res,next) {
-	req.session.array = req.session.array.length || [];
+	req.session.arrayQuiz = req.session.arrayQuiz.length || [];
 	result = req.query.answer == req.quiz.answer;
 
 	if (result) {
-		req.session.array[req.session.arrayQuiz.length] = req.qiuz.id;
+		req.session.arrayQuiz[req.session.arrayQuiz.length] = req.qiuz.id;
 	} else {
-	req.session.array = [];
+	req.session.arrayQuiz = [];
 	}
-	score = req.session.array.length;
+	score = req.session.arrayQuiz.length;
 	res.render('quizzes/random_result',{
 		score: score,
 		answer: req.query.answer,
