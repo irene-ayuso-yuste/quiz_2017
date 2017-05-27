@@ -223,7 +223,7 @@ exports.random = function(req, res, next){
 //Random2
 
 exports.random2 = function(req,res,next) {
-	req.session.arrayQuiz = req.session.arrayQuiz.length || [];
+	req.session.arrayQuiz = req.session.arrayQuiz || [];
 	result = req.query.answer == req.quiz.answer;
 
 	if (result) {
@@ -232,7 +232,7 @@ exports.random2 = function(req,res,next) {
 	req.session.arrayQuiz = [];
 	}
 	score = req.session.arrayQuiz.length;
-	res.render('quizzes/random_result',{
+	res.render('quizzes/random_result.ejs',{
 		score: score,
 		answer: req.query.answer,
 		result: result
