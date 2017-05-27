@@ -227,7 +227,7 @@ exports.random2 = function(req,res,next) {
 	result = req.query.answer == req.quiz.answer;
 
 	if (result) {
-		req.session.arrayQuiz[req.session.arrayQuiz.length] = req.qiuz.id;
+	req.session.arrayQuiz[req.session.arrayQuiz.length] = req.quiz.id;
 	} else {
 	req.session.arrayQuiz = [];
 	}

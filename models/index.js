@@ -30,8 +30,9 @@ sequelize.sync().then(function() {
 	Quiz.count().then(function(count) {
 		if (count === 0) {
 			Quiz.create({
-				question: 'Mejor club de Teleco',
-				answer: 'Delta'
+				question: 'Capital de Italia',
+				answer: 'Roma',
+				id: '1'
 			}).then(function() {
 				console.log('Quizzes inicializados');
 			});
