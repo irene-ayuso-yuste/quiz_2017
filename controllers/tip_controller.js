@@ -21,17 +21,17 @@ exports.load = function (req, res, next, tipId) {
 
 
 // GET /quizzes/:quizId/tips/new
-exports.new = function (req, res, next) {
+//exports.new = function (req, res, next) {
 
-    var tip = {
-        text: ""
-    };
+//    var tip = {
+//        text: ""
+//    };
 
-    res.render('tips/new', {
-        tip: tip,
-        quiz: req.quiz
-    });
-};
+//    res.render('tips/new', {
+//        tip: tip,
+//        quiz: req.quiz
+//    });
+//};
 
 
 // POST /quizzes/:quizId/tips

@@ -117,10 +117,11 @@ router.get('/quizzes/:quizId(\\d+)/play',
 router.get('/quizzes/:quizId(\\d+)/check',
     quizController.check);
 
+//
+//router.get('/quizzes/:quizId(\\d+)/tips/new',
+//    sessionController.loginRequired,
+//    tipController.new);
 
-router.get('/quizzes/:quizId(\\d+)/tips/new',
-    sessionController.loginRequired,
-    tipController.new);
 router.post('/quizzes/:quizId(\\d+)/tips',
     sessionController.loginRequired,
     tipController.create);
@@ -142,7 +143,7 @@ router.delete('/quizzes/:quizId(\\d+)',    quizController.destroy);
 
 router.get('/quizzes/:quizId(\\d+)/play',  quizController.play);
 router.get('/quizzes/:quizId(\\d+)/check', quizController.check);
->>>>>>> bf8c103
+
 
 //Pagina de ayuda
 router.get('/help',function(req,res,next){
@@ -153,6 +154,6 @@ router.get('/help',function(req,res,next){
 //Boton de jugar
 router.get('/quizzes/randomplay', quizController.random);
 router.get('/quizzes/randomcheck/:quizId(\\d+)',quizController.random2);
->>>>>>> bf8c103
+
 
 module.exports = router;
