@@ -131,5 +131,9 @@ router.delete('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)',
     sessionController.loginRequired,
     tipController.destroy);
 
+//Pagina de ayuda
+router.get('/help',function(req,res,next){
+    res.render('help');
+});
 
 module.exports = router;
