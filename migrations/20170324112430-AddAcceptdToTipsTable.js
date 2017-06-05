@@ -5,6 +5,7 @@ module.exports = {
         return queryInterface.addColumn(
             'Tips',
             'accepted',
+	    'AuthorId',
             {
                 type: Sequelize.BOOLEAN,
                 defaultValue: false
@@ -13,6 +14,6 @@ module.exports = {
     },
 
     down: function (queryInterface, Sequelize) {
-        return queryInterface.removeColumn('Tips', 'accepted');
+        return queryInterface.removeColumn('Tips', 'accepted', 'AuthorId');
     }
 };
