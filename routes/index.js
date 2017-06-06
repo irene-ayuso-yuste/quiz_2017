@@ -1,15 +1,14 @@
-var express = require('express');
+var express = require('express'); 
 var router = express.Router();
 
-var quizController = require('../controllers/quiz_controller');
-var tipController = require('../controllers/tip_controller');
-var userController = require('../controllers/user_controller');
+var quizController = require('../controllers/quiz_controller'); 
+var tipController = require('../controllers/tip_controller'); 
+var userController = require('../controllers/user_controller'); 
 var sessionController = require('../controllers/session_controller');
 
 //-----------------------------------------------------------
 
-// autologout
-router.all('*',sessionController.deleteExpiredUserSession);
+// autologout router.all('*',sessionController.deleteExpiredUserSession);
 
 //-----------------------------------------------------------
 
@@ -90,69 +89,58 @@ router.get('/users/:userId(\\d+)/quizzes', quizController.index);     // ver las
 // Definición de rutas de /quizzes
 
 router.get('/quizzes',
-    quizController.index);
-router.get('/quizzes/:quizId(\\d+)',
-    quizController.show);
-router.get('/quizzes/new',
+    quizController.index); router.get('/quizzes/:quizId(\\d+)',
+    quizController.show); router.get('/quizzes/new',
     sessionController.loginRequired,
-    quizController.new);
-router.post('/quizzes',
+    quizController.new); router.post('/quizzes',
     sessionController.loginRequired,
-    quizController.create);
-router.get('/quizzes/:quizId(\\d+)/edit',
+    quizController.create); router.get('/quizzes/:quizId(\\d+)/edit',
     sessionController.loginRequired,
     quizController.adminOrAuthorRequired,
-    quizController.edit);
-router.put('/quizzes/:quizId(\\d+)',
+    quizController.edit); router.put('/quizzes/:quizId(\\d+)',
     sessionController.loginRequired,
     quizController.adminOrAuthorRequired,
-    quizController.update);
-router.delete('/quizzes/:quizId(\\d+)',
+    quizController.update); router.delete('/quizzes/:quizId(\\d+)',
     sessionController.loginRequired,
     quizController.adminOrAuthorRequired,
     quizController.destroy);
 
 router.get('/quizzes/:quizId(\\d+)/play',
-    quizController.play);
-router.get('/quizzes/:quizId(\\d+)/check',
+    quizController.play); router.get('/quizzes/:quizId(\\d+)/check',
     quizController.check);
 
 //
-//router.get('/quizzes/:quizId(\\d+)/tips/new',
-//    sessionController.loginRequired,
-//    tipController.new);
+// router.get('/quizzes/:quizId(\\d+)/tips/new', 
+// sessionController.loginRequired, 
+// tipController.new);
 
 router.post('/quizzes/:quizId(\\d+)/tips',
-    sessionController.loginRequired,
-    tipController.create);
+    sessionController.loginRequired, tipController.create);
 router.put('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)/accept',
-    sessionController.loginRequired,
-    quizController.adminOrAuthorRequired,
-    tipController.accept);
+    sessionController.loginRequired, quizController.adminOrAuthorRequired, tipController.accept);
 router.delete('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)',
-    sessionController.loginRequired,
-    tipController.destroy);
+    sessionController.loginRequired, tipController.destroy);
 
-router.get('/quizzes',                     quizController.index);
-router.get('/quizzes/:quizId(\\d+)',       quizController.show);
-router.get('/quizzes/new',                 quizController.new);
-router.post('/quizzes',                    quizController.create);
-router.get('/quizzes/:quizId(\\d+)/edit',  quizController.edit);
-router.put('/quizzes/:quizId(\\d+)',       quizController.update);
-router.delete('/quizzes/:quizId(\\d+)',    quizController.destroy);
+router.get('/quizzes', quizController.index);
+router.get('/quizzes/:quizId(\\d+)', quizController.show); 
+router.get('/quizzes/new', quizController.new); 
+router.post('/quizzes', quizController.create); 
+router.get('/quizzes/:quizId(\\d+)/edit', quizController.edit); 
+router.put('/quizzes/:quizId(\\d+)',quizController.update); 
+router.delete('/quizzes/:quizId(\\d+)', quizController.destroy);
 
-router.get('/quizzes/:quizId(\\d+)/play',  quizController.play);
+router.get('/quizzes/:quizId(\\d+)/play', quizController.play); 
 router.get('/quizzes/:quizId(\\d+)/check', quizController.check);
 
 
-//Pagina de ayuda
+//Pagina de ayuda 
 router.get('/help',function(req,res,next){
     res.render('help');
 });
 
 
-//Boton de jugar
-router.get('/quizzes/randomplay', quizController.random);
+//Boton de jugar 
+router.get('/quizzes/randomplay', quizController.random); 
 router.get('/quizzes/randomcheck/:quizId(\\d+)',quizController.random2);
 
 
